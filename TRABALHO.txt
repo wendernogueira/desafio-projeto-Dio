@@ -1,0 +1,56 @@
+USE DeltaZ123
+
+CREATE TABLE tbl_Reparticao
+(IDReparticao INT PRIMARY KEY IDENTITY(1,1), /* a.Código */
+ NomeSetor_Reparticao VARCHAR(50) NOT NULL /* b. Nome do Setor*/
+
+)
+
+CREATE TABLE tbl_Computadores
+( IDComputador INT PRIMARY KEY  IDENTITY(1,1), 
+  Tipo_Computador VARCHAR(10) NOT NULL  ,        /* I)Tipo de equipamento: portátil ou fixo. */
+  Equipamento_Computador VARCHAR(25) NOT NULL,   /* II) Acessórios tais como mesa digitalizadora, impressora, scanner ou qualquer equipamento */
+  CodPatrimonial_Computador DECIMAL(4,3) NOT NULL UNIQUE, /*  Ano de 4 algarismos Numero Sequencial de 3 algarismos */
+  Uso_Computador VARCHAR(10) NOT NULL,           /*III) Uso coletivo ou individual.*/
+  Acesso_Rede_Computador VARCHAR(25) NOT NULL,    /*IV) Uso coletivo ou individual. */
+ /* Identificar que Setor esta localizado o computador */
+  IDReparticao INT NOT NULL
+  CONSTRAINT fk_Id_Reparticao FOREIGN KEY(IDReparticao) /* V) Matrícula do colaborador ou o centro de custo */
+  REFERENCES tbl_Reparticao
+
+)
+
+CREATE TABLE tbl_Software
+(
+  ID_Software int PRIMARY KEY IDENTITY(1,1),
+  Nome_Software VARCHAR(50) NOT NULL,  /* I) Nome do software.*/
+  Fabricante_Software VARCHAR(50),     /*II) Fabricante do software.  */
+  Versão_Software DECIMAL(4,3) NOT NULL, /* III) Versão do software. */
+  NotaFiscal_Software INT NOT NULL,      /* IV) Número da Nota Fiscal de aquisição.*/
+  DataAquisicao_Software DATETIME NOT NULL, /* V) Data de aquisição. */
+  Chave_Software VARCHAR(50) NOT NULL UNIQUE, /* VI) Chave de licenciamento */
+  DataExpiracao_Software DATETIME NOT NULL, /* VII) Validade da chave de licenciamento (data que expiração). */
+  Classificacao_Software VARCHAR(500) NOT NULL, /*VIII) Classificação: sistema operacional, utilitário, ferramenta de desenvolvimento, driver e outros. */
+  /*Identificar qual Computador esta instalado o Software */
+  IDComputador INT  NOT NULL 
+  CONSTRAINT fk_id_Computador FOREIGN KEY(IDComputador)
+  REFERENCES tbl_Computadores
+)
+
+
+
+CREATE TABLE tbl_Colaborador
+(IDColaborador INT PRIMARY KEY IDENTITY(1,1),
+Matricula_Colaborador INT NOT NULL UNIQUE, /* Matricula*/
+Nome_Colaborador VARCHAR(50) NOT NULL,  /* Nome*/
+Cargo VARCHAR(25) NOT NULL,             /*Cargo */
+/*D) Lotação ( é o centro de custo) */
+IDReparticao INT NOT NULL 
+CONSTRAINT fk_IDC_Reparticao FOREIGN KEY(IDReparticao) 
+REFERENCES tbl_Reparticao, 
+/*Identificar qual computador que o colaborador esta usando*/
+IDComputador INT NOT NULL
+CONSTRAINT fk_IDC_Computador FOREIGN KEY(IDComputador) 
+REFERENCES tbl_Computadores
+
+)

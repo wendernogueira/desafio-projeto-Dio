@@ -1,0 +1,96 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Classes;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+/**
+ *
+ * @author WENDERSON
+ */
+@Embeddable
+public class TblColaboradorPK implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "idtbl_Colaborador")
+    private int idtblColaborador;
+    @Basic(optional = false)
+    @Column(name = "tbl_Reparticao_idtbl_Reparticao")
+    private int tblReparticaoidtblReparticao;
+    @Basic(optional = false)
+    @Column(name = "tbl_Computadores_idtbl_Computadores")
+    private int tblComputadoresidtblComputadores;
+
+    public TblColaboradorPK() {
+    }
+
+    public TblColaboradorPK(int idtblColaborador, int tblReparticaoidtblReparticao, int tblComputadoresidtblComputadores) {
+        this.idtblColaborador = idtblColaborador;
+        this.tblReparticaoidtblReparticao = tblReparticaoidtblReparticao;
+        this.tblComputadoresidtblComputadores = tblComputadoresidtblComputadores;
+    }
+
+    public int getIdtblColaborador() {
+        return idtblColaborador;
+    }
+
+    public void setIdtblColaborador(int idtblColaborador) {
+        this.idtblColaborador = idtblColaborador;
+    }
+
+    public int getTblReparticaoidtblReparticao() {
+        return tblReparticaoidtblReparticao;
+    }
+
+    public void setTblReparticaoidtblReparticao(int tblReparticaoidtblReparticao) {
+        this.tblReparticaoidtblReparticao = tblReparticaoidtblReparticao;
+    }
+
+    public int getTblComputadoresidtblComputadores() {
+        return tblComputadoresidtblComputadores;
+    }
+
+    public void setTblComputadoresidtblComputadores(int tblComputadoresidtblComputadores) {
+        this.tblComputadoresidtblComputadores = tblComputadoresidtblComputadores;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (int) idtblColaborador;
+        hash += (int) tblReparticaoidtblReparticao;
+        hash += (int) tblComputadoresidtblComputadores;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof TblColaboradorPK)) {
+            return false;
+        }
+        TblColaboradorPK other = (TblColaboradorPK) object;
+        if (this.idtblColaborador != other.idtblColaborador) {
+            return false;
+        }
+        if (this.tblReparticaoidtblReparticao != other.tblReparticaoidtblReparticao) {
+            return false;
+        }
+        if (this.tblComputadoresidtblComputadores != other.tblComputadoresidtblComputadores) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Classes.TblColaboradorPK[ idtblColaborador=" + idtblColaborador + ", tblReparticaoidtblReparticao=" + tblReparticaoidtblReparticao + ", tblComputadoresidtblComputadores=" + tblComputadoresidtblComputadores + " ]";
+    }
+    
+}

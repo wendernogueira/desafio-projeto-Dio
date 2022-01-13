@@ -1,0 +1,15 @@
+
+create procedure p_ITEMVENDA_insere(
+@QTDE float,
+@VALORUNITARIO decimal(15,2),
+@VALORDESCONTO decimal(15,2),
+@VALORTOTAL decimal(15,2)
+)
+AS
+BEGIN
+  INSERT INTO tbl_itemvenda(QTDE_Item,VALORUNITARIO_Item,VALORDESCONTO_Item,VALORTOTAL_Item)
+  VALUES(@QTDE,@VALORUNITARIO,@VALORDESCONTO,@VALORTOTAL)
+
+ 
+END
+ select * from tbl_itemvenda as ITEM

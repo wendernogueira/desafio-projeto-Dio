@@ -1,0 +1,81 @@
+/*
+Autor: Wenderson nogueira de Lima
+ Ciência da Computação 6ºSemestre
+ */
+
+
+package Classes;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+/**
+ *
+ * @author WENDERSON
+ */
+@Embeddable
+//Classe acesso a chave estrangeira 
+public class TblAcessorioPK implements Serializable {
+    @Basic(optional = false)
+    @Column(name = "idtbl_Acessorio")
+    private int idtblAcessorio;
+    @Basic(optional = false)
+    @Column(name = "tbl_Computadores_idtbl_Computadores")
+    private int tblComputadoresidtblComputadores;
+
+    public TblAcessorioPK() {
+    }
+
+    public TblAcessorioPK(int idtblAcessorio, int tblComputadoresidtblComputadores) {
+        this.idtblAcessorio = idtblAcessorio;
+        this.tblComputadoresidtblComputadores = tblComputadoresidtblComputadores;
+    }
+
+    public int getIdtblAcessorio() {
+        return idtblAcessorio;
+    }
+
+    public void setIdtblAcessorio(int idtblAcessorio) {
+        this.idtblAcessorio = idtblAcessorio;
+    }
+
+    public int getTblComputadoresidtblComputadores() {
+        return tblComputadoresidtblComputadores;
+    }
+
+    public void setTblComputadoresidtblComputadores(int tblComputadoresidtblComputadores) {
+        this.tblComputadoresidtblComputadores = tblComputadoresidtblComputadores;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (int) idtblAcessorio;
+        hash += (int) tblComputadoresidtblComputadores;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO:  este método não funciona no caso dos campos ID não estão definidas
+        if (!(object instanceof TblAcessorioPK)) {
+            return false;
+        }
+        TblAcessorioPK other = (TblAcessorioPK) object;
+        if (this.idtblAcessorio != other.idtblAcessorio) {
+            return false;
+        }
+        if (this.tblComputadoresidtblComputadores != other.tblComputadoresidtblComputadores) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Classes.TblAcessorioPK[ idtblAcessorio=" + idtblAcessorio + ", tblComputadoresidtblComputadores=" + tblComputadoresidtblComputadores + " ]";
+    }
+    
+}
